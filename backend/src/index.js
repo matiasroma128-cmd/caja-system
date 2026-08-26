@@ -29,4 +29,4 @@ app.use('/api/historial', autenticar, historialRoutes);
 app.use((req, res) => res.status(404).json({ error: 'Recurso no encontrado.' }));
 
 const PORT = process.env.PORT || 4000;
-app.listen(PORT, () => console.log(`API de Caja Diaria corriendo en http://localhost:${PORT}`));
+app.listen(PORT, '0.0.0.0', () => console.log(`API de Caja Diaria corriendo en http://localhost:${PORT}`));
