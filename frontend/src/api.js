@@ -1,4 +1,4 @@
-const BASE = '/api';
+const BASE = 'https://caja-system-production.up.railway.app/api';
 
 function getToken() {
   return window.__cajaToken || null;
