@@ -1,32 +1,23 @@
 require('dotenv').config();
 const express = require('express');
 const cors = require('cors');
-
 const { autenticar } = require('./middleware/auth');
-
 const authRoutes = require('./routes/auth');
 const aperturaRoutes = require('./routes/apertura');
 const movimientosRoutes = require('./routes/movimientos');
 const dashboardRoutes = require('./routes/dashboard');
 const cierreRoutes = require('./routes/cierre');
 const historialRoutes = require('./routes/historial');
-
 const app = express();
 app.use(cors());
 app.use(express.json());
-
 app.get('/api/health', (req, res) => res.json({ ok: true }));
-
 app.use('/api/auth', authRoutes);
-
-// A partir de acá, todas las rutas requieren estar autenticado
 app.use('/api/apertura', autenticar, aperturaRoutes);
 app.use('/api/movimientos', autenticar, movimientosRoutes);
 app.use('/api/dashboard', autenticar, dashboardRoutes);
 app.use('/api/cierre', autenticar, cierreRoutes);
 app.use('/api/historial', autenticar, historialRoutes);
-
 app.use((req, res) => res.status(404).json({ error: 'Recurso no encontrado.' }));
-
-const PORT = process.env.PORT || 4000;
-app.listen(PORT, '0.0.0.0', () => console.log(`API de Caja Diaria corriendo en http://localhost:${PORT}`));
+const PORT = process.env.PORT || 8080;
+app.listen(PORT, '0.0.0.0', () => console.log('API corriendo en puerto ' + PORT));
