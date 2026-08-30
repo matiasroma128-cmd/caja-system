@@ -20,4 +20,4 @@ app.use('/api/cierre', autenticar, cierreRoutes);
 app.use('/api/historial', autenticar, historialRoutes);
 app.use((req, res) => res.status(404).json({ error: 'Recurso no encontrado.' }));
 const PORT = process.env.PORT || 8080;
-app.listen(PORT, '0.0.0.0', () => console.log('API corriendo en puerto ' + PORT));
+app.listen(PORT, '0.0.0.0', () => console.log('Servidor corriendo en puerto ' + PORT));
